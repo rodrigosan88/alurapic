@@ -1,2 +1,2 @@
 // Modulo principal da aplicação
-angular.module('alurapic', []);
+angular.module('alurapic', ['minhasDiretivas', 'ngAnimate', 'meusFiltros']);

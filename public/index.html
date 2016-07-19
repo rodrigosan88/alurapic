@@ -6,16 +6,17 @@
         <title>Alurapic</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <script src="js/lib/angular.min.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/controllers/fotos-controller.js"></script>
+        <link rel="stylesheet" href="css/efeitos.css">
     </head>
     <body ng-controller="FotosController">
-        <div class="container">
-            <div class="jumbotron">
-                <h1 class="text-center">Alurapic</h1>
-            </div>
-            <div class="row">
+        <div>
+
+            
+            <div class="container">
+                <div class="jumbotron">
+                    <h1 class="text-center">Alurapic</h1>
+                </div>
+                <!--
                 <div class="panel panel-default col-md-2" ng-repeat="foto in fotos">
                     <div>
                         <h3 class="panel-title text-center">{{foto.titulo}}</h3>
@@ -23,9 +24,27 @@
                     <div class="panel-body">
                         <img class="img-responsive center-block" src={{foto.url}}>    
                     </div>
-                <img ng-repeat="foto in fotos" class="img-responsive center-block" ng-src="{{foto.url}}" alt="{{foto.titulo}}"></img>
+                </div> -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <form>
+                            <input class="form-control" placeholder="Filtrar pelo título" ng-model="txtbusca" ng-model-options="{debounce:500}">
+                        </form>
+                    </div>
+                
+                </div>
+                <div class="row">
+                    <meu-painel ng-repeat="foto in fotos | filter:{titulo:txtbusca}" titulo="{{foto.titulo | maiusculo}}" class="painel-animado col-md-2">
+                        <img class="img-responsive center-block" src={{foto.url}} alt="{{foto.titulo}}">    
+                    </meu-painel>
                 </div>
             </div>
-        </div> <!-- fim container -->        
+        </div> <!-- fim container --> 
+        <script src="js/lib/angular.min.js"></script>
+        <script src="js/lib/angular-animate.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/controllers/fotos-controller.js"></script>
+        <script src="js/directives/minhas-diretivas.js"></script>
+        <script src="js/filtros/meus-filtros.js"></script>
     </body>
 </html>
